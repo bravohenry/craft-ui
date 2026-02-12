@@ -1,0 +1,70 @@
+{
+  "name": "@craft/ui",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "description": "Cross-platform React UI component library — extracted from Craft Agents with ShadCN/Radix patterns",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./src/styles/index.css",
+    "./chat": "./src/components/chat/index.ts",
+    "./markdown": "./src/components/markdown/index.ts",
+    "./code-viewer": "./src/components/code-viewer/index.ts",
+    "./terminal": "./src/components/terminal/index.ts",
+    "./overlay": "./src/components/overlay/index.ts",
+    "./cards": "./src/components/cards/index.ts",
+    "./lib": "./src/lib/index.ts",
+    "./context": "./src/context/index.ts",
+    "./types": "./src/types/index.ts"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "dependencies": {
+    "@types/mdast": "^4.0.0",
+    "@uiw/react-json-view": "^2.0.0-alpha.40",
+    "fflate": "^0.8.2",
+    "linkify-it": "^5.0.0",
+    "nice-ticks": "^1.0.2",
+    "unified": "^11.0.0",
+    "unist-util-visit": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@radix-ui/react-context-menu": ">=2.0.0",
+    "@radix-ui/react-dialog": ">=1.0.0",
+    "@radix-ui/react-dropdown-menu": ">=2.0.0",
+    "@radix-ui/react-tooltip": ">=1.0.0",
+    "@craft-agent/mermaid": ">=0.1.0",
+    "@pierre/diffs": ">=0.1.0",
+    "@tailwindcss/typography": ">=0.5.0",
+    "class-variance-authority": ">=0.7.0",
+    "clsx": ">=2.0.0",
+    "lucide-react": ">=0.400.0",
+    "motion": ">=11.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "react-markdown": ">=9.0.0",
+    "rehype-raw": ">=7.0.0",
+    "remark-gfm": ">=4.0.0",
+    "shiki": "^3.21.0",
+    "tailwind-merge": ">=2.0.0",
+    "tailwindcss": ">=4.0.0",
+    "react-pdf": ">=7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@craft-agent/mermaid": { "optional": true },
+    "@radix-ui/react-context-menu": { "optional": true },
+    "@radix-ui/react-dialog": { "optional": true },
+    "@radix-ui/react-dropdown-menu": { "optional": true },
+    "react-pdf": { "optional": true }
+  },
+  "devDependencies": {
+    "@types/linkify-it": "^5.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}

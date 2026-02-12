@@ -6,14 +6,17 @@ src/types/ - Standalone type definitions replacing @craft-agent/core (3 files: m
 src/utils/ - Pure utility functions: cn(), path helpers (2 files)
 src/styles/ - Design system CSS: 6-color oklch, 13-level foreground gradients, shadow system, animations
 src/context/ - React context providers: PlatformContext (Electron/Web), ShikiThemeContext (syntax themes)
-src/lib/ - Pure utilities: layout constants, language-map, table-export, linkify, attachment-helpers, file-classification (6 files)
+src/lib/ - Pure utilities: layout constants, language-map, table-export, linkify, attachment-helpers, file-classification, tool-parsers (7 files)
 src/hooks/ - React hooks: useScrollFade (1 file)
-src/components/ - L1 primitives, code-viewer/, markdown/, overlay/ component layers
+src/components/ - L1 primitives, code-viewer/, markdown/, overlay/, terminal/, cards/, chat/ component layers
 src/components/primitives/ - Atomic UI components: Tooltip, Spinner, CopyButton, Dropdowns, PreviewHeader (7 files)
 src/components/primitives/icons/ - Custom SVG icon components: Folder, Home, Inbox (3 files + types)
-src/components/code-viewer/ - Diff viewer icons, Shiki theme registration (2 files)
-src/components/markdown/ - Safe tag proxy, collapsible section context + remark plugin (3 files)
-src/components/overlay/ - OverlayErrorBanner, ContentFrame terminal-style card (2 files)
+src/components/code-viewer/ - Code/diff viewing: ShikiCodeViewer, ShikiDiffViewer, UnifiedDiffViewer, DiffViewerControls, DiffIcons, registerShikiThemes (6 files)
+src/components/markdown/ - Markdown renderer, CodeBlock, CollapsibleSection, block renderers (Diff, JSON, Mermaid, Datatable, Spreadsheet), TableExportDropdown (12 files)
+src/components/overlay/ - FullscreenOverlayBase, PreviewOverlay, GenericOverlay, composed previews (Code, Terminal, JSON, PDF, Mermaid, MultiDiff, DataTable, Document), OverlayErrorBanner, ContentFrame (15 files)
+src/components/terminal/ - ANSI escape code parser, TerminalOutput command+output display component (3 files)
+src/components/cards/ - Card components: ActionCard (1 file)
+src/components/chat/ - Chat turn rendering: TurnCard, SessionViewer, UserMessageBubble, SystemMessage, turn-utils, InlineExecution (10 files)
 </directory>
 
 <config>

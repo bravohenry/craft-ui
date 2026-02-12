@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@craft/ui/styles": ["../src/styles/index.css"],
+      "@craft/ui/chat": ["../src/components/chat/index.ts"],
+      "@craft/ui/markdown": ["../src/components/markdown/index.ts"],
+      "@craft/ui/code-viewer": ["../src/components/code-viewer/index.ts"],
+      "@craft/ui/terminal": ["../src/components/terminal/index.ts"],
+      "@craft/ui/overlay": ["../src/components/overlay/index.ts"],
+      "@craft/ui/cards": ["../src/components/cards/index.ts"],
+      "@craft/ui/lib": ["../src/lib/index.ts"],
+      "@craft/ui/context": ["../src/context/index.ts"],
+      "@craft/ui/types": ["../src/types/index.ts"],
+      "@craft/ui": ["../src/index.ts"],
+      "@/*": ["../src/*"]
+    },
+    "baseUrl": "."
+  },
+  "include": ["src", "../src"]
+}

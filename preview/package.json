@@ -1,0 +1,45 @@
+{
+  "name": "@craft/ui-preview",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "shiki": "^3.21.0",
+    "react-markdown": "^9.0.0",
+    "remark-gfm": "^4.0.0",
+    "rehype-raw": "^7.0.0",
+    "lucide-react": "^0.400.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0",
+    "class-variance-authority": "^0.7.0",
+    "motion": "^11.0.0",
+    "@radix-ui/react-tooltip": "^1.0.0",
+    "@radix-ui/react-dialog": "^1.0.0",
+    "@radix-ui/react-dropdown-menu": "^2.0.0",
+    "@radix-ui/react-context-menu": "^2.0.0",
+    "@uiw/react-json-view": "^2.0.0-alpha.40",
+    "fflate": "^0.8.2",
+    "linkify-it": "^5.0.0",
+    "nice-ticks": "^1.0.2",
+    "unified": "^11.0.0",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.7.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/linkify-it": "^5.0.0"
+  }
+}

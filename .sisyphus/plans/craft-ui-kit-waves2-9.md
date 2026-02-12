@@ -1069,9 +1069,9 @@ grep -rL "\[PROTOCOL\]" src/**/*.ts src/**/*.tsx 2>/dev/null | wc -l
 ```
 
 ### Final Checklist
-- [ ] All "Must Have" present
-- [ ] All "Must NOT Have" absent
-- [ ] Zero @craft-agent/core imports in src/
-- [ ] Every file has GEB L3 header
-- [ ] All AGENTS.md files updated
-- [ ] package.json has all required peer deps
+- [x] All "Must Have" present
+- [x] All "Must NOT Have" absent
+- [x] Zero @craft-agent/core imports in src/
+- [x] Every file has GEB L3 header
+- [x] All AGENTS.md files updated
+- [x] package.json has all required peer deps

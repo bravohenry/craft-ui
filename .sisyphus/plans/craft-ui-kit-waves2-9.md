@@ -63,10 +63,10 @@ Complete the @craft/ui library by extracting all remaining components from craft
 - Updated package.json with new optional peer deps
 
 ### Definition of Done
-- [ ] `npx tsc --noEmit` → 0 errors
-- [ ] `grep -r "@craft-agent/core" src/ --include="*.ts" --include="*.tsx" | wc -l` → 0
-- [ ] All subpath exports in package.json resolve correctly
-- [ ] Every .ts/.tsx file has GEB L3 header
+- [x] `npx tsc --noEmit` → 0 errors
+- [x] `grep -r "@craft-agent/core" src/ --include="*.ts" --include="*.tsx" | wc -l` → 0
+- [x] All subpath exports in package.json resolve correctly
+- [x] Every .ts/.tsx file has GEB L3 header
 
 ### Must Have
 - All source component behavior preserved verbatim
@@ -152,7 +152,7 @@ Parallel Speedup: ~35% faster than sequential
 
 ## TODOs
 
-- [ ] 1. Extract ActivityItem types + add file-classification utility
+- [x] 1. Extract ActivityItem types + add file-classification utility
 
   **What to do**:
   - Create `src/types/activity.ts`: Extract `ActivityItem`, `ActivityStatus`, `ActivityType`, `ResponseContent`, `TodoItem` type definitions from source TurnCard.tsx (lines ~50-120). These are currently defined inside TurnCard but consumed by tool-parsers and InlineExecution.
@@ -239,7 +239,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/types/activity.ts`, `src/types/index.ts`, `src/lib/file-classification.ts`, `src/lib/index.ts`, `src/types/AGENTS.md`, `src/lib/AGENTS.md`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 2. Add terminal/ module (ansi-parser + TerminalOutput)
+- [x] 2. Add terminal/ module (ansi-parser + TerminalOutput)
 
   **What to do**:
   - Create `src/components/terminal/ansi-parser.ts`: Copy from source (153L). Pure utility — ANSI escape code parsing, grep output detection. Zero internal deps.
@@ -311,7 +311,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/components/terminal/ansi-parser.ts`, `src/components/terminal/TerminalOutput.tsx`, `src/components/terminal/index.ts`, `src/components/terminal/AGENTS.md`, `src/components/index.ts`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 3. Add cards/ActionCard component
+- [x] 3. Add cards/ActionCard component
 
   **What to do**:
   - Create `src/components/cards/ActionCard.tsx`: Copy from source (268L). Fix imports: `cn` → `@/utils`, lucide-react stays as peer dep. ActionCard is a fully independent leaf component — no internal deps beyond cn.
@@ -370,7 +370,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/components/cards/ActionCard.tsx`, `src/components/cards/index.ts`, `src/components/cards/AGENTS.md`, `src/components/index.ts`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 4. Add code-viewer composite components
+- [x] 4. Add code-viewer composite components
 
   **What to do**:
   - Create `src/components/code-viewer/ShikiCodeViewer.tsx`: Copy from source (187L). Fix imports: `cn` → `@/utils`, `LANGUAGE_MAP` → `@/lib` (already exists as `src/lib/language-map.ts`). Uses `shiki` and `codeToHtml` from peer dep.
@@ -459,7 +459,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/components/code-viewer/*.tsx`, `src/components/code-viewer/index.ts`, `src/components/code-viewer/AGENTS.md`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 5. Add overlay base layer components
+- [x] 5. Add overlay base layer components
 
   **What to do**:
   - Create `src/components/overlay/FullscreenOverlayBase.tsx`: Copy from source (181L). Fix imports: `cn` → `@/utils`, Radix Dialog from peer dep. This is the foundational overlay wrapper — dialog + backdrop + close button.
@@ -535,7 +535,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/components/overlay/Fullscreen*.tsx`, `src/components/overlay/PreviewOverlay.tsx`, `src/components/overlay/GenericOverlay.tsx`, `src/components/overlay/ImagePreviewOverlay.tsx`, `src/components/overlay/index.ts`, `src/components/overlay/AGENTS.md`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 6. Add markdown/ composite components
+- [x] 6. Add markdown/ composite components
 
   **What to do**:
   - Create `src/components/markdown/CodeBlock.tsx`: Copy from source (234L). Fix imports: `cn` → `@/utils`, `ShikiCodeViewer` → `@/components/code-viewer` (Task 4), `CopyButton` → `@/components/primitives`. Uses `CollapsibleMarkdownContext` (already exists as sibling).
@@ -635,7 +635,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/components/markdown/*.tsx`, `src/components/markdown/index.ts`, `src/components/markdown/AGENTS.md`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 7. Add overlay composed preview components
+- [x] 7. Add overlay composed preview components
 
   **What to do**:
   - Create `src/components/overlay/CodePreviewOverlay.tsx`: Copy from source (108L). Fix imports: uses `ShikiCodeViewer` → `@/components/code-viewer`, `PreviewOverlay` → sibling.
@@ -728,7 +728,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/components/overlay/*PreviewOverlay.tsx`, `src/components/overlay/DataTableOverlay.tsx`, `src/components/overlay/DocumentFormattedMarkdownOverlay.tsx`, `src/components/overlay/index.ts`, `src/components/overlay/AGENTS.md`, `package.json`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 8. Add chat/ module (Path A — import fixes only)
+- [x] 8. Add chat/ module (Path A — import fixes only)
 
   **What to do**:
   - Create `src/components/chat/turn-utils.ts`: Copy from source (1197L). Fix ALL imports: `Message`, `StoredMessage`, `ToolDisplayMeta`, `ToolStatus` → `@/types`. `normalizePath`, `pathStartsWith`, `stripPathPrefix` → `@/utils/paths` (already exists). This is the largest utility file — pure functions for turn lifecycle, activity processing, grouping.
@@ -858,7 +858,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/components/chat/*.ts(x)`, `src/components/chat/index.ts`, `src/components/chat/AGENTS.md`, `src/components/index.ts`
   - Pre-commit: `npx tsc --noEmit && grep -r "@craft-agent/core" src/ --include="*.ts" --include="*.tsx" | wc -l`
 
-- [ ] 9. Add lib/tool-parsers utility
+- [x] 9. Add lib/tool-parsers utility
 
   **What to do**:
   - Create `src/lib/tool-parsers.ts`: Copy from source (580L). Fix ALL imports: `ActivityItem`, `ActivityType`, `ActivityStatus` → `@/types/activity` (Task 1). `ToolStatus`, `ToolDisplayMeta` → `@/types/message`. `ToolType` (if imported from TerminalOutput) → define locally or import from `@/components/terminal`. `normalizePath` → `@/utils/paths`. `getFileClassification` → sibling `@/lib/file-classification` (Task 1). This file parses raw tool events into structured ActivityItem objects — the bridge between agent events and UI rendering.
@@ -934,7 +934,7 @@ Parallel Speedup: ~35% faster than sequential
   - Files: `src/lib/tool-parsers.ts`, `src/lib/index.ts`, `src/lib/AGENTS.md`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 10. Finalize barrel exports, package.json, AGENTS.md, verification
+- [x] 10. Finalize barrel exports, package.json, AGENTS.md, verification
 
   **What to do**:
   - Verify and update `src/index.ts`: Ensure all module barrels are re-exported (types, utils, context, components, hooks, lib). Verify subpath exports for chat, markdown, code-viewer, terminal, overlay, context, types all resolve.

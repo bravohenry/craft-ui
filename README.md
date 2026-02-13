@@ -21,6 +21,10 @@ It is designed for teams building:
 
 The package is intentionally platform-agnostic so the same component surface can be reused in both browser React apps and Electron apps.
 
+## Attribution
+
+UI 搭建来源: [lukilabs/craft-agents-oss](https://github.com/lukilabs/craft-agents-oss/)
+
 ## Core Goals
 
 1. Keep API shape Shadcn-compatible for low adoption cost.

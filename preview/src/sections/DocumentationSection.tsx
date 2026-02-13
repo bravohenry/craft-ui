@@ -154,6 +154,18 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-5">
+          <p className="text-xs text-muted-foreground">
+            UI 搭建来源：
+            {' '}
+            <a
+              href="https://github.com/lukilabs/craft-agents-oss/"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-4"
+            >
+              https://github.com/lukilabs/craft-agents-oss/
+            </a>
+          </p>
           <Alert>
             <Sparkles className="size-4" />
             <AlertTitle>Default experience</AlertTitle>

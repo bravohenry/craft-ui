@@ -30,6 +30,7 @@ npm install @craft/ui
 | 导入路径 | 模块 | 提供内容 |
 |---|---|---|
 | `@craft/ui` | 根模块 | 基础组件：Tooltip、Spinner、CopyButton、下拉菜单、PreviewHeader、图标 |
+| `@craft/ui/ui` | 基础 UI | Shadcn-compatible + Craft 风格控件：Button/Input/Select/Dialog/Table/Calendar/Checkbox/RadioGroup/Slider/Progress/Card/Alert/Tooltip/Skeleton |
 | `@craft/ui/styles` | 样式 | oklch 6 色设计系统、13 级前景色梯度、阴影、动画 |
 | `@craft/ui/types` | 类型 | Message、Session、Activity 及相关 TypeScript 类型定义 |
 | `@craft/ui/context` | 上下文 | PlatformProvider（Electron/Web 环境检测）、ShikiThemeProvider |

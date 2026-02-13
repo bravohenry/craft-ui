@@ -8,7 +8,8 @@ src/styles/ - Design system CSS: 6-color oklch, 13-level foreground gradients, s
 src/context/ - React context providers: PlatformContext (Electron/Web), ShikiThemeContext (syntax themes)
 src/lib/ - Pure utilities: layout constants, language-map, table-export, linkify, attachment-helpers, file-classification, tool-parsers (7 files)
 src/hooks/ - React hooks: useScrollFade (1 file)
-src/components/ - L1 primitives, code-viewer/, markdown/, overlay/, terminal/, cards/, chat/ component layers
+src/components/ - L1 ui/, primitives/, code-viewer/, markdown/, overlay/, terminal/, cards/, chat/ component layers
+src/components/ui/ - Shadcn-compatible + Craft-styled base layer: Button/Input/Select/Dialog/Dropdown/Tabs/Table/Calendar/Drawer + Checkbox/RadioGroup/Slider/Progress + Alert/Card/Skeleton/Tooltip + Styled menus/DataTable + ToneBadge/RuleSetCard/SectionHeader recipes (40 files: 38 component files + index.ts + AGENTS.md)
 src/components/primitives/ - Atomic UI components: Tooltip, Spinner, CopyButton, Dropdowns, PreviewHeader (7 files)
 src/components/primitives/icons/ - Custom SVG icon components: Folder, Home, Inbox (3 files + types)
 src/components/code-viewer/ - Code/diff viewing: ShikiCodeViewer, ShikiDiffViewer, UnifiedDiffViewer, DiffViewerControls, DiffIcons, registerShikiThemes (6 files)

@@ -1,2 +1,17 @@
 @import "tailwindcss";
 @import "@craft/ui/styles";
+
+/* Scan preview app source for Tailwind classes */
+@source "../src/**/*.{tsx,ts}";
+
+/* Critical: also scan extracted craft/ui source for component classes */
+@source "../../src/**/*.{tsx,ts}";
+
+/* Match OSS viewer contrast so cards/buttons have clear separation */
+:root {
+  --background: white;
+}
+
+.dark {
+  --background: oklch(0.26 0.01 270);
+}

@@ -25,6 +25,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@craft/ui/styles': path.resolve(__dirname, '../src/styles/index.css'),
+      '@craft/ui/ui': path.resolve(__dirname, '../src/components/ui/index.ts'),
       '@craft/ui/primitives': path.resolve(__dirname, '../src/components/primitives/index.ts'),
       '@craft/ui/chat': path.resolve(__dirname, '../src/components/chat/index.ts'),
       '@craft/ui/markdown': path.resolve(__dirname, '../src/components/markdown/index.ts'),

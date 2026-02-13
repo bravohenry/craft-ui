@@ -119,10 +119,9 @@ export function FullscreenOverlayBase({
               className="h-full overflow-y-auto"
               style={{ paddingTop: contentPaddingTop, paddingBottom: FADE_SIZE, scrollPaddingTop: contentPaddingTop }}
             >
-              {/* Centering wrapper — error + content move together as a unit.
-                  min-h-full ensures centering when content is small; content can grow beyond. */}
-              <div className="min-h-full flex flex-col justify-center">
-                {/* Error banner — inside centering flow, above content */}
+              {/* Flow wrapper — keep a stable top-aligned baseline across preview types. */}
+              <div className="min-h-full flex flex-col justify-start">
+                {/* Error banner — inside shared top-aligned flow, above content */}
                 {error && (
                   <div className="px-6 pb-4">
                     <OverlayErrorBanner label={error.label} message={error.message} />

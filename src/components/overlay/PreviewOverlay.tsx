@@ -135,8 +135,8 @@ export function PreviewOverlay({
         className="absolute inset-0 overflow-y-auto"
         style={{ paddingTop: FADE_SIZE, paddingBottom: FADE_SIZE, scrollPaddingTop: FADE_SIZE }}
       >
-        {/* Centering wrapper — error + content are vertically centered together when small */}
-        <div className="min-h-full flex flex-col justify-center">
+        {/* Flow wrapper — keep a stable top-aligned baseline across preview types */}
+        <div className="min-h-full flex flex-col justify-start">
           {errorBanner}
           {children}
         </div>

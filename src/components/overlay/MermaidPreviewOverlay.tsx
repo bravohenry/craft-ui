@@ -402,13 +402,10 @@ export function MermaidPreviewOverlay({
         ref={containerRef}
         role="application"
         aria-label="Zoomable mermaid diagram viewer"
-        className="flex items-center justify-center select-none"
+        className="min-h-full w-full flex items-center justify-center select-none px-6 py-4"
         onMouseDown={handleMouseDown}
         onDoubleClick={handleDoubleClick}
         style={{
-          marginTop: -72,
-          marginBottom: -24,
-          height: '100vh',
           cursor: isDragging ? 'grabbing' : 'grab',
           overflow: 'hidden',
         }}

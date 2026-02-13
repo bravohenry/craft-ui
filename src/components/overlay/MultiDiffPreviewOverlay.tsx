@@ -312,12 +312,12 @@ export function MultiDiffPreviewOverlay({
     >
       <div
         className={cn(
-          "flex px-6 min-h-full",
+          "w-full px-6 py-4",
           animateReveal && "transition-opacity duration-150"
         )}
         style={{ opacity: contentVisible ? 1 : 0 }}
       >
-        <div className="m-auto" style={{ width: 'max-content', maxWidth: '100%', minWidth: 'min(850px, 100%)' }}>
+        <div className="mx-auto w-full" style={{ maxWidth: 1100, minWidth: 'min(850px, 100%)' }}>
           <div className="flex flex-col gap-4">
             {fileSections.map((section) => (
               <div key={section.key} className="flex flex-col gap-4">

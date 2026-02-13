@@ -7,8 +7,12 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "noEmit": true,
+    "typeRoots": ["../node_modules/@types"],
     "paths": {
       "@craft/ui/styles": ["../src/styles/index.css"],
+      "@craft/ui/ui": ["../src/components/ui/index.ts"],
+      "@craft/ui/primitives": ["../src/components/primitives/index.ts"],
       "@craft/ui/chat": ["../src/components/chat/index.ts"],
       "@craft/ui/markdown": ["../src/components/markdown/index.ts"],
       "@craft/ui/code-viewer": ["../src/components/code-viewer/index.ts"],

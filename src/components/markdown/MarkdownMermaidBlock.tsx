@@ -1,44 +1,21 @@
 /**
- * [INPUT]: @craft-agent/mermaid (renderMermaidSync), lucide-react (Maximize2), @/utils/cn, @/hooks/useScrollFade, ./CodeBlock, ../overlay/MermaidPreviewOverlay
+ * [INPUT]: @/lib/mermaid-helper (renderMermaidSync), lucide-react (Maximize2), @/utils/cn, @/hooks/useScrollFade, ./CodeBlock, ../overlay/MermaidPreviewOverlay
  * [OUTPUT]: MarkdownMermaidBlock component, MarkdownMermaidBlockProps
  * [POS]: markdown/ — renders mermaid code fences as SVG diagrams with fullscreen overlay, consumed by Markdown renderer
  * [PROTOCOL]: Update this header on change, then check AGENTS.md
  */
 
 import * as React from 'react'
-import { renderMermaidSync } from '@craft-agent/mermaid'
+import { renderMermaidSync } from '@/lib/mermaid-helper'
 import { Maximize2 } from 'lucide-react'
 import { cn } from '@/utils/cn'
 import { CodeBlock } from './CodeBlock'
 import { MermaidPreviewOverlay } from '../overlay/MermaidPreviewOverlay'
 import { useScrollFade } from '@/hooks/useScrollFade'
 
-// ============================================================================
-// MarkdownMermaidBlock — renders mermaid code fences as SVG diagrams.
-//
-// Uses @craft-agent/mermaid to parse flowchart text and produce an SVG string.
-// Falls back to a plain code block if rendering fails (invalid syntax, etc).
-//
-// Theming: Colors are passed as CSS variable references (var(--background),
-// var(--foreground), etc.) so the SVG inherits from the app's theme system
-// via CSS cascade. Theme switches (light/dark, preset changes) apply
-// automatically without re-rendering — the browser resolves the variables.
-//
-// Wide diagrams: Horizontal diagrams (graph LR) with many nodes can become
-// unreadably small when fit to container width. To fix this, we enforce a
-// minimum rendered height (MIN_READABLE_HEIGHT). If the natural scale would
-// produce a height below this threshold, we scale up and allow horizontal
-// scroll. A CSS mask gradient fades the edges to indicate scrollable content.
-// ============================================================================
-
-// Minimum rendered height for diagrams. Wide horizontal diagrams are scaled
-// up to at least this height to keep text readable, with horizontal scroll.
+// Minimum rendered height for diagrams
 const MIN_READABLE_HEIGHT = 280
-
-// Fade zone size for scroll indicators (px)
 const FADE_SIZE = 32
-
-// Small overflow threshold — if diagram overflows by less than this, scale to fit
 const SMALL_OVERFLOW_THRESHOLD = 200
 
 /** Parse width/height from an SVG string's root element attributes. */
@@ -52,20 +29,23 @@ function parseSvgDimensions(svgString: string): { width: number; height: number 
 export interface MarkdownMermaidBlockProps {
   code: string
   className?: string
-  /** Whether to show the inline expand button. Default true.
-   *  Set to false when the mermaid block is the first block in a message,
-   *  where the TurnCard's own fullscreen button already occupies the same position. */
   showExpandButton?: boolean
 }
 
 export function MarkdownMermaidBlock({ code, className, showExpandButton = true }: MarkdownMermaidBlockProps) {
-  // Render synchronously — no flash between CodeBlock and SVG.
-  // Colors are CSS variable references so the SVG inherits from the app's theme
-  // via CSS cascade. Theme switches apply automatically without re-rendering.
-  const { svg, error } = React.useMemo(() => {
-    try {
-      return {
-        svg: renderMermaidSync(code, {
+  const [svg, setSvg] = React.useState<string | null>(null)
+  const [error, setError] = React.useState<Error | null>(null)
+  const [isMermaidLoaded, setIsMermaidLoaded] = React.useState(false)
+
+  const [isFullscreen, setIsFullscreen] = React.useState(false)
+  const { scrollRef, maskImage } = useScrollFade(FADE_SIZE)
+
+  React.useEffect(() => {
+    let cancelled = false
+
+    async function renderDiagram() {
+      try {
+        const result = await renderMermaidSync(code, {
           bg: 'var(--background)',
           fg: 'var(--foreground)',
           accent: 'var(--accent)',
@@ -74,21 +54,32 @@ export function MarkdownMermaidBlock({ code, className, showExpandButton = true 
           surface: 'var(--foreground-3)',
           border: 'var(--foreground-20)',
           transparent: true,
-        }),
-        error: null,
+        })
+        if (!cancelled) {
+          if (result === null) {
+            setIsMermaidLoaded(false)
+            setSvg(null)
+          } else {
+            setIsMermaidLoaded(true)
+            setSvg(result)
+            setError(null)
+          }
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err instanceof Error ? err : new Error(String(err)))
+          setSvg(null)
+        }
       }
-    } catch (err) {
-      return { svg: null, error: err instanceof Error ? err : new Error(String(err)) }
+    }
+
+    renderDiagram()
+
+    return () => {
+      cancelled = true
     }
   }, [code])
 
-  const [isFullscreen, setIsFullscreen] = React.useState(false)
-  const { scrollRef, maskImage } = useScrollFade(FADE_SIZE)
-
-  // Calculate scaled dimensions for wide diagrams.
-  // If the natural height at container width would be below MIN_READABLE_HEIGHT,
-  // scale up to reach that height — but never exceed 100% (natural size).
-  // This prevents small diagrams from being over-zoomed and pixelated.
   const getScaledDimensions = React.useCallback(() => {
     if (!svg) return null
 
@@ -96,22 +87,17 @@ export function MarkdownMermaidBlock({ code, className, showExpandButton = true 
     if (!dims) return null
 
     const containerWidth = scrollRef.current?.clientWidth ?? 600
-
-    // Calculate what height we'd get if we fit to container width
     const fitToContainerScale = containerWidth / dims.width
     const projectedHeight = dims.height * fitToContainerScale
 
-    // If diagram height is fine at natural size, check if width overflows
     if (projectedHeight >= MIN_READABLE_HEIGHT) {
       const overflow = dims.width - containerWidth
 
-      // Small overflow: scale to fit rather than scroll
       if (overflow > 0 && overflow < SMALL_OVERFLOW_THRESHOLD) {
         const scaledHeight = dims.height * fitToContainerScale
         return { scale: fitToContainerScale, width: containerWidth, height: scaledHeight, needsScroll: false }
       }
 
-      // Large overflow: enable scroll at natural size
       const needsScroll = overflow > 0
       return {
         scale: 1,
@@ -121,18 +107,13 @@ export function MarkdownMermaidBlock({ code, className, showExpandButton = true 
       }
     }
 
-    // Diagram would be too small at container width.
-    // Scale up to reach MIN_READABLE_HEIGHT, but cap at 100% (natural size).
     const desiredScale = MIN_READABLE_HEIGHT / dims.height
     const scale = Math.min(desiredScale, 1.0)
-
     const scaledWidth = dims.width * scale
     const scaledHeight = dims.height * scale
-
-    // Enable scroll if scaled content is wider than container (beyond threshold)
     const scaledOverflow = scaledWidth - containerWidth
+
     if (scaledOverflow > 0 && scaledOverflow < SMALL_OVERFLOW_THRESHOLD) {
-      // Small overflow: scale to fit container
       const fitScale = containerWidth / dims.width
       const fitHeight = dims.height * fitScale
       return { scale: fitScale, width: containerWidth, height: fitHeight, needsScroll: false }
@@ -146,29 +127,20 @@ export function MarkdownMermaidBlock({ code, className, showExpandButton = true 
     }
   }, [svg])
 
-  // On error, fall back to a plain code block showing the mermaid source
   if (error) {
     return <CodeBlock code={code} language="mermaid" mode="full" className={className} />
   }
 
-  // Fallback: if SVG is null (should be caught by error above, but just in case)
-  if (!svg) {
+  if (!isMermaidLoaded || !svg) {
     return <CodeBlock code={code} language="mermaid" mode="full" className={className} />
   }
 
   const scaledDims = getScaledDimensions()
-
-  // Scaling mode: when dimensions are provided OR scale !== 1
-  // This is separate from needsScroll — we may scale to fit without scrolling
   const needsScaling = scaledDims && (scaledDims.width != null || scaledDims.scale !== 1)
 
   return (
     <>
-      {/* Wrapper with group class so the expand button shows on hover */}
       <div className={cn('relative group', className)}>
-        {/* Expand button — matches code block expand button style (TurnCard pattern).
-            Hidden when showExpandButton is false (first block in message, where
-            TurnCard's own fullscreen button occupies the same top-right position). */}
         {showExpandButton && (
           <button
             type="button"
@@ -186,8 +158,6 @@ export function MarkdownMermaidBlock({ code, className, showExpandButton = true 
           </button>
         )}
 
-        {/* Scroll container with fade mask for overflow indication.
-            CSS mask gradient fades the edges when content is scrollable. */}
         <div
           ref={scrollRef}
           style={{
@@ -197,8 +167,6 @@ export function MarkdownMermaidBlock({ code, className, showExpandButton = true 
             WebkitMaskImage: maskImage,
           }}
         >
-          {/* Size wrapper — uses explicit dimensions when scaling or scrolling.
-              Block display for scaled/scrolling content, flex center for natural fit. */}
           <div
             style={{
               width: needsScaling && scaledDims?.width ? `${scaledDims.width}px` : undefined,
@@ -219,7 +187,6 @@ export function MarkdownMermaidBlock({ code, className, showExpandButton = true 
         </div>
       </div>
 
-      {/* Fullscreen overlay with zoom/pan */}
       <MermaidPreviewOverlay
         isOpen={isFullscreen}
         onClose={() => setIsFullscreen(false)}

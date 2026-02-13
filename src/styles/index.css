@@ -9,7 +9,7 @@
   --background: oklch(0.98 0.003 265);
   --foreground: oklch(0.185 0.01 270);
   --foreground-rgb: 38, 36, 42;
-  --accent: oklch(0.58 0.22 293);
+  --accent: oklch(0.62 0.13 293);
   --accent-rgb: 104, 78, 133;
   --info: oklch(0.75 0.16 70);
   --success: oklch(0.55 0.17 145);
@@ -25,19 +25,37 @@
   --shadow-border-opacity: 0.08;
   --shadow-blur-opacity: 0.06;
 
-  --foreground-2: color-mix(in oklch, var(--foreground) 2%, var(--background));
-  --foreground-3: color-mix(in oklch, var(--foreground) 3%, var(--background));
-  --foreground-5: color-mix(in oklch, var(--foreground) 5%, var(--background));
-  --foreground-10: color-mix(in oklch, var(--foreground) 10%, var(--background));
-  --foreground-20: color-mix(in oklch, var(--foreground) 20%, var(--background));
-  --foreground-30: color-mix(in oklch, var(--foreground) 30%, var(--background));
-  --foreground-40: color-mix(in oklch, var(--foreground) 40%, var(--background));
-  --foreground-50: color-mix(in oklch, var(--foreground) 50%, var(--background));
-  --foreground-60: color-mix(in oklch, var(--foreground) 60%, var(--background));
-  --foreground-70: color-mix(in oklch, var(--foreground) 70%, var(--background));
-  --foreground-80: color-mix(in oklch, var(--foreground) 80%, var(--background));
-  --foreground-90: color-mix(in oklch, var(--foreground) 90%, var(--background));
-  --foreground-95: color-mix(in oklch, var(--foreground) 95%, var(--background));
+  --shadow-minimal:
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
+    rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 1px 1px -0.5px,
+    rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 3px 3px -1.5px;
+
+  --shadow-modal-small:
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
+    rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 1px 1px -0.5px,
+    rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 3px 3px 0px,
+    rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.33)) 0px 6px 6px 0px,
+    rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.33)) 0px 12px 12px 0px,
+    rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.33)) 0px 24px 24px 0px;
+
+  --foreground-1\.5: color-mix(in srgb, var(--foreground) 1.5%, var(--background));
+  --foreground-2: color-mix(in srgb, var(--foreground) 2%, var(--background));
+  --foreground-3: color-mix(in srgb, var(--foreground) 3%, var(--background));
+  --foreground-5: color-mix(in srgb, var(--foreground) 5%, var(--background));
+  --foreground-10: color-mix(in srgb, var(--foreground) 10%, var(--background));
+  --foreground-20: color-mix(in srgb, var(--foreground) 20%, var(--background));
+  --foreground-30: color-mix(in srgb, var(--foreground) 30%, var(--background));
+  --foreground-40: color-mix(in srgb, var(--foreground) 40%, var(--background));
+  --foreground-50: color-mix(in srgb, var(--foreground) 50%, var(--background));
+  --foreground-60: color-mix(in srgb, var(--foreground) 60%, var(--background));
+  --foreground-70: color-mix(in srgb, var(--foreground) 70%, var(--background));
+  --foreground-80: color-mix(in srgb, var(--foreground) 80%, var(--background));
+  --foreground-90: color-mix(in srgb, var(--foreground) 90%, var(--background));
+  --foreground-95: color-mix(in srgb, var(--foreground) 95%, var(--background));
 
   --secondary: oklch(from var(--foreground) l c h / 0.05);
   --secondary-foreground: var(--foreground);
@@ -65,6 +83,21 @@
   --radius: 0rem;
   --spacing: 0.25rem;
   --tracking-normal: 0em;
+
+  /* z-index registry shared by overlays/menus/dialogs */
+  --z-base: 0;
+  --z-local: 10;
+  --z-sticky: 20;
+  --z-titlebar: 40;
+  --z-panel: 50;
+  --z-dropdown: 100;
+  --z-tooltip: 150;
+  --z-modal: 200;
+  --z-overlay: 300;
+  --z-fullscreen: 350;
+  --z-floating-backdrop: 390;
+  --z-floating-menu: 400;
+  --z-splash: 600;
 }
 
 /* =========================================================================
@@ -75,7 +108,7 @@
   --background: oklch(0.2 0.005 270);
   --foreground: oklch(0.92 0.005 270);
   --foreground-rgb: 227, 226, 229;
-  --accent: oklch(0.65 0.20 293);
+  --accent: oklch(0.68 0.13 293);
   --accent-rgb: 118, 92, 147;
   --info: oklch(0.70 0.16 70);
   --success: oklch(0.60 0.17 145);
@@ -91,19 +124,20 @@
   --shadow-border-opacity: 0.15;
   --shadow-blur-opacity: 0.12;
 
-  --foreground-2: color-mix(in oklch, var(--foreground) 2%, var(--background));
-  --foreground-3: color-mix(in oklch, var(--foreground) 3%, var(--background));
-  --foreground-5: color-mix(in oklch, var(--foreground) 5%, var(--background));
-  --foreground-10: color-mix(in oklch, var(--foreground) 10%, var(--background));
-  --foreground-20: color-mix(in oklch, var(--foreground) 20%, var(--background));
-  --foreground-30: color-mix(in oklch, var(--foreground) 30%, var(--background));
-  --foreground-40: color-mix(in oklch, var(--foreground) 40%, var(--background));
-  --foreground-50: color-mix(in oklch, var(--foreground) 50%, var(--background));
-  --foreground-60: color-mix(in oklch, var(--foreground) 60%, var(--background));
-  --foreground-70: color-mix(in oklch, var(--foreground) 70%, var(--background));
-  --foreground-80: color-mix(in oklch, var(--foreground) 80%, var(--background));
-  --foreground-90: color-mix(in oklch, var(--foreground) 90%, var(--background));
-  --foreground-95: color-mix(in oklch, var(--foreground) 95%, var(--background));
+  --foreground-1\.5: color-mix(in srgb, var(--foreground) 1.5%, var(--background));
+  --foreground-2: color-mix(in srgb, var(--foreground) 2%, var(--background));
+  --foreground-3: color-mix(in srgb, var(--foreground) 3%, var(--background));
+  --foreground-5: color-mix(in srgb, var(--foreground) 5%, var(--background));
+  --foreground-10: color-mix(in srgb, var(--foreground) 10%, var(--background));
+  --foreground-20: color-mix(in srgb, var(--foreground) 20%, var(--background));
+  --foreground-30: color-mix(in srgb, var(--foreground) 30%, var(--background));
+  --foreground-40: color-mix(in srgb, var(--foreground) 40%, var(--background));
+  --foreground-50: color-mix(in srgb, var(--foreground) 50%, var(--background));
+  --foreground-60: color-mix(in srgb, var(--foreground) 60%, var(--background));
+  --foreground-70: color-mix(in srgb, var(--foreground) 70%, var(--background));
+  --foreground-80: color-mix(in srgb, var(--foreground) 80%, var(--background));
+  --foreground-90: color-mix(in srgb, var(--foreground) 90%, var(--background));
+  --foreground-95: color-mix(in srgb, var(--foreground) 95%, var(--background));
 
   --secondary: oklch(from var(--foreground) l c h / 0.05);
   --secondary-foreground: var(--foreground);
@@ -140,6 +174,7 @@ html[data-font="inter"] {
   --color-success: var(--success);
   --color-destructive: var(--destructive);
 
+  --color-foreground-1\.5: var(--foreground-1\.5);
   --color-foreground-2: var(--foreground-2);
   --color-foreground-3: var(--foreground-3);
   --color-foreground-5: var(--foreground-5);
@@ -153,6 +188,7 @@ html[data-font="inter"] {
   --color-foreground-80: var(--foreground-80);
   --color-foreground-90: var(--foreground-90);
   --color-foreground-95: var(--foreground-95);
+  --color-sidebar-hover: oklch(from var(--foreground) l c h / 0.02);
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -172,6 +208,20 @@ html[data-font="inter"] {
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
+
+  --z-index-base: var(--z-base);
+  --z-index-local: var(--z-local);
+  --z-index-sticky: var(--z-sticky);
+  --z-index-titlebar: var(--z-titlebar);
+  --z-index-panel: var(--z-panel);
+  --z-index-dropdown: var(--z-dropdown);
+  --z-index-tooltip: var(--z-tooltip);
+  --z-index-modal: var(--z-modal);
+  --z-index-overlay: var(--z-overlay);
+  --z-index-fullscreen: var(--z-fullscreen);
+  --z-index-floating-backdrop: var(--z-floating-backdrop);
+  --z-index-floating-menu: var(--z-floating-menu);
+  --z-index-splash: var(--z-splash);
 
   --shadow-2xs: var(--shadow-2xs);
   --shadow-xs: var(--shadow-xs);
@@ -245,12 +295,7 @@ html[data-font="inter"] {
   }
 
   .shadow-minimal {
-    box-shadow:
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px,
-      rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px;
+    box-shadow: var(--shadow-minimal);
   }
 
   .shadow-middle {
@@ -258,9 +303,9 @@ html[data-font="inter"] {
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px,
-      rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px,
-      rgba(0, 0, 0, 0.06) 0px 6px 6px -3px;
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 1px 1px -0.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 3px 3px -1.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 6px 6px -3px;
   }
 
   .shadow-medium {
@@ -268,10 +313,10 @@ html[data-font="inter"] {
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px,
-      rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px,
-      rgba(0, 0, 0, 0.06) 0px 6px 6px -3px,
-      rgba(0, 0, 0, 0.04) 0px 12px 12px -6px;
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 1px 1px -0.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 3px 3px -1.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 6px 6px -3px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 12px 12px -6px;
   }
 
   .shadow-hero {
@@ -279,12 +324,12 @@ html[data-font="inter"] {
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px,
-      rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px,
-      rgba(0, 0, 0, 0.06) 0px 6px 6px -3px,
-      rgba(0, 0, 0, 0.04) 0px 12px 12px -6px,
-      rgba(0, 0, 0, 0.03) 0px 24px 32px -12px,
-      rgba(0, 0, 0, 0.02) 0px 48px 64px -24px;
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 1px 1px -0.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 3px 3px -1.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 6px 6px -3px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 12px 12px -6px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 24px 24px -12px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.33)) 0px 48px 48px -24px;
   }
 
   .shadow-tinted {
@@ -302,7 +347,7 @@ html[data-font="inter"] {
     box-shadow:
       rgba(var(--shadow-color), 0) 0px 0px 0px 0px,
       rgba(var(--shadow-color), 0) 0px 0px 0px 0px,
-      rgba(var(--shadow-color), calc(var(--shadow-border-opacity) * 3)) 0px 0px 0px 1px,
+      oklch(from rgb(var(--shadow-color)) 0.425 c h / 0.6) 0px 0px 0px 1px,
       rgba(var(--shadow-color), 0) 0px 1px 1px -0.5px,
       rgba(var(--shadow-color), 0) 0px 3px 3px -1.5px,
       rgba(var(--shadow-color), 0) 0px 6px 6px -3px;
@@ -313,11 +358,15 @@ html[data-font="inter"] {
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.06) 0px 1px 1px -0.5px,
-      rgba(0, 0, 0, 0.06) 0px 3px 3px -1.5px,
-      rgba(0, 0, 0, 0.06) 0px 6px 6px -3px,
-      rgba(0, 0, 0, 0.04) 0px 12px 12px -6px,
-      rgba(0, 0, 0, 0.04) 0px 24px 24px -12px;
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 1px 1px -0.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 3px 3px -1.5px,
+      rgba(0, 0, 0, var(--shadow-blur-opacity)) 0px 6px 6px -3px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 12px 12px -6px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 24px 24px -12px;
+  }
+
+  .shadow-modal-small {
+    box-shadow: var(--shadow-modal-small);
   }
 
   .smooth-corners {
@@ -334,11 +383,11 @@ html[data-font="inter"] {
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(0, 0, 0, 0) 0px 0px 0px 0px,
       rgba(var(--foreground-rgb), 0.06) 0px 0px 0px 1px,
-      rgba(0, 0, 0, 0.04) 0px 1px 1px -0.5px,
-      rgba(0, 0, 0, 0.04) 0px 3px 3px 0px,
-      rgba(0, 0, 0, 0.02) 0px 6px 6px 0px,
-      rgba(0, 0, 0, 0.02) 0px 12px 12px 0px,
-      rgba(0, 0, 0, 0.02) 0px 24px 24px 0px;
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 1px 1px -0.5px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.67)) 0px 3px 3px 0px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.33)) 0px 6px 6px 0px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.33)) 0px 12px 12px 0px,
+      rgba(0, 0, 0, calc(var(--shadow-blur-opacity) * 0.33)) 0px 24px 24px 0px;
   }
 }
 

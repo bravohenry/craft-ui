@@ -2,6 +2,8 @@
 
 Package: `@craft/ui`
 
+Description: `Agentic-Native UI Kit`
+
 Cross-platform React UI component library for developer tooling interfaces.
 
 `React` `TypeScript` `Tailwind v4` `Radix UI` `oklch`
@@ -22,6 +24,21 @@ It is designed for teams building:
 - preview overlays for complex content
 
 The package is intentionally platform-agnostic so the same component surface can be reused in both browser React apps and Electron apps.
+
+## Why This Exists
+
+This kit exists to prevent teams from rebuilding the same UI foundation in every agent product.
+
+- one consistent component surface for both React web apps and Electron apps
+- shared visual language across chat, code, markdown, tables, and overlays
+- faster shipping with less UI drift between projects
+
+## Where It Comes From
+
+The implementation direction combines two proven sources:
+
+- API and composability principles inspired by [shadcn/ui](https://github.com/shadcn-ui/ui)
+- production interaction patterns extracted from [Craft Agents OSS](https://github.com/lukilabs/craft-agents-oss/)
 
 ## Open Source Notice
 

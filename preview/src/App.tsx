@@ -50,7 +50,7 @@ interface SectionMeta {
 
 const sectionMeta: Record<Section, SectionMeta> = {
   Documentation: {
-    description: 'Human-first onboarding, AI-first implementation contract.',
+    description: 'Agentic-Native UI Kit',
     icon: BookOpenText,
   },
   Foundations: {

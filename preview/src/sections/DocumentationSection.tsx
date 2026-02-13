@@ -1,11 +1,16 @@
 /**
- * [INPUT]: depends on @craft/ui/ui primitives and lucide-react icons.
+ * [INPUT]: depends on @craft/ui/ui primitives, @craft/ui/chat components, and lucide-react icons.
  * [OUTPUT]: DocumentationSection component with human-first guide and AI-first implementation spec.
  * [POS]: preview homepage delivery document and default entry for sidebar navigation.
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
 
 import { Bot, BookOpen, Code2, Rocket, Sparkles } from 'lucide-react'
+import {
+  InlineExecution,
+  SystemMessage,
+  UserMessageBubble,
+} from '@craft/ui/chat'
 import {
   Alert,
   AlertDescription,
@@ -139,7 +144,7 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
     <div className="space-y-8">
       <SectionHeader
         title="Agentic/ui Delivery Document"
-        description="Human-first onboarding at the top; AI-first integration contract below."
+        description="Agentic-Native UI Kit"
         action={<Badge className="gap-1"><BookOpen className="size-3.5" />Docs Home</Badge>}
       />
 
@@ -155,7 +160,7 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
         </CardHeader>
         <CardContent className="space-y-5">
           <p className="text-xs text-muted-foreground">
-            UI build source:
+            Origin:
             {' '}
             <a
               href="https://github.com/lukilabs/craft-agents-oss/"
@@ -163,8 +168,20 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
               rel="noreferrer"
               className="underline underline-offset-4"
             >
-              https://github.com/lukilabs/craft-agents-oss/
+              Craft Agents OSS
             </a>
+            {' '}
+            with design system patterns aligned to
+            {' '}
+            <a
+              href="https://github.com/shadcn-ui/ui"
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-4"
+            >
+              shadcn/ui
+            </a>
+            .
           </p>
           <Alert>
             <Sparkles className="size-4" />
@@ -173,6 +190,23 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
               Sidebar now opens on the first item by default, so newcomers always land on this document page first.
             </AlertDescription>
           </Alert>
+
+          <div className="space-y-3 rounded-lg border border-border bg-muted/20 p-3">
+            <p className="text-sm font-semibold">Why This Exists (Human Brief)</p>
+            <UserMessageBubble
+              compactMode
+              content="Why do we need this kit, and where does it come from?"
+            />
+            <SystemMessage
+              type="system"
+              content="We need one consistent UI surface for React and Electron so teams do not rebuild primitives for every app. This kit merges the composable API style from [shadcn/ui](https://github.com/shadcn-ui/ui) with production interaction patterns extracted from [Craft Agents OSS](https://github.com/lukilabs/craft-agents-oss/)."
+            />
+            <InlineExecution
+              status="success"
+              activities={[]}
+              result="Outcome: faster delivery, lower design drift, and reusable agent-native patterns across chat, code, markdown, tables, and overlays."
+            />
+          </div>
 
           <div className="space-y-3">
             <h3 className="text-sm font-semibold">5-minute setup</h3>

@@ -5,6 +5,7 @@ import {
   Blocks,
   Box,
   Braces,
+  Github,
   LayoutGrid,
   MessageSquareText,
   Monitor,
@@ -148,27 +149,32 @@ export function App() {
               })}
             </ul>
           </div>
-          <div className="mt-3 space-y-2 border-t border-border pt-3">
-            <a
-              href={authorWebsiteUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="block text-xs font-medium text-muted-foreground underline-offset-4 hover:underline"
-            >
-              Zihan Huang
-            </a>
-            <Button size="sm" variant="ghost" className="h-8 w-full justify-start px-2 text-xs font-normal text-muted-foreground hover:text-foreground" asChild>
-              <a href={projectRepoUrl} target="_blank" rel="noreferrer">
-                Open in GitHub
-              </a>
-            </Button>
-          </div>
         </nav>
 
         <main className="flex-1 overflow-y-auto p-8">
-          <header className="mb-6 space-y-1">
-            <h2 className="text-2xl font-bold">{active}</h2>
-            <p className="text-sm text-muted-foreground">{activeMeta.description}</p>
+          <header className="mb-6 flex items-start justify-between gap-4">
+            <div className="space-y-1">
+              <h2 className="text-2xl font-bold">{active}</h2>
+              <p className="text-sm text-muted-foreground">{activeMeta.description}</p>
+            </div>
+            {active === 'Documentation' && (
+              <div className="flex shrink-0 flex-col items-end gap-2 pt-0.5">
+                <a
+                  href={authorWebsiteUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs font-medium text-muted-foreground underline-offset-4 hover:underline"
+                >
+                  Zihan Huang
+                </a>
+                <Button size="sm" variant="outline" className="h-8 px-3 text-xs" asChild>
+                  <a href={projectRepoUrl} target="_blank" rel="noreferrer">
+                    <Github className="size-3.5" />
+                    Open in GitHub
+                  </a>
+                </Button>
+              </div>
+            )}
           </header>
           <ActiveSection />
         </main>

@@ -5,7 +5,7 @@
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
 
-import { Bot, BookOpen, Code2, Github, Globe, Rocket, Sparkles, UserRound } from 'lucide-react'
+import { Bot, BookOpen, Code2, Rocket, Sparkles } from 'lucide-react'
 import {
   Alert,
   AlertDescription,
@@ -130,10 +130,6 @@ const sectionMap = [
   { section: 'Chat Experience', purpose: 'turn card, session viewer, inline execution UI' },
 ]
 
-const projectRepoUrl = 'https://github.com/bravohenry/craft-ui'
-const authorProfileUrl = 'https://github.com/bravohenry'
-const authorWebsiteUrl = 'https://z1han.com'
-
 interface DocumentationSectionProps {
   onNavigate?: (section: 'Foundations' | 'Component Gallery') => void
 }
@@ -217,54 +213,6 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
           </Table>
         </Card>
       </div>
-
-      <Card className="border-foreground/15">
-        <CardHeader>
-          <CardTitle>Author and Repository</CardTitle>
-          <CardDescription>Project ownership and official links for handoff and integration.</CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-lg border border-border bg-muted/20 p-3">
-            <p className="text-xs text-muted-foreground">Author</p>
-            <p className="mt-1 flex items-center gap-1.5 text-sm font-medium">
-              <UserRound className="size-3.5" />
-              Zihan Huang
-            </p>
-          </div>
-          <div className="rounded-lg border border-border bg-muted/20 p-3">
-            <p className="text-xs text-muted-foreground">GitHub</p>
-            <a
-              href={authorProfileUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
-            >
-              <Github className="size-3.5" />
-              bravohenry
-            </a>
-          </div>
-          <div className="rounded-lg border border-border bg-muted/20 p-3">
-            <p className="text-xs text-muted-foreground">Website</p>
-            <a
-              href={authorWebsiteUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-primary underline-offset-4 hover:underline"
-            >
-              <Globe className="size-3.5" />
-              z1han.com
-            </a>
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button variant="outline" size="sm" asChild>
-            <a href={projectRepoUrl} target="_blank" rel="noreferrer">
-              <Github className="size-3.5" />
-              Open GitHub Repository
-            </a>
-          </Button>
-        </CardFooter>
-      </Card>
 
       <Separator />
 

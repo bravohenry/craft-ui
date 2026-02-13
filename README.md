@@ -33,6 +33,16 @@ This kit exists to prevent teams from rebuilding the same UI foundation in every
 - shared visual language across chat, code, markdown, tables, and overlays
 - faster shipping with less UI drift between projects
 
+### Why Not Shadcn Alone
+
+Shadcn is excellent for app primitives, but agent products need additional first-class workflows.
+
+- Shadcn primitives: buttons, inputs, dialogs, layout scaffolding
+- Agent-native requirements: thinking-process UI, long-form Markdown rendering, Mermaid visualization
+- Delivery requirement: a unified UX that works the same in React and Electron
+
+That is why this project keeps shadcn-style API ergonomics and extends it with agent-native layers.
+
 ## Where It Comes From
 
 The implementation direction combines two proven sources:

@@ -4,7 +4,7 @@ Cross-platform React UI component library for developer tooling interfaces.
 
 `React` `TypeScript` `Tailwind v4` `Radix UI` `oklch`
 
-English | [中文](./README.zh-CN.md)
+English | [Chinese](./README.zh-CN.md)
 
 ---
 
@@ -21,9 +21,11 @@ It is designed for teams building:
 
 The package is intentionally platform-agnostic so the same component surface can be reused in both browser React apps and Electron apps.
 
-## Attribution
+## Open Source Notice
 
-UI 搭建来源: [lukilabs/craft-agents-oss](https://github.com/lukilabs/craft-agents-oss/)
+- UI implementation source reference: [lukilabs/craft-agents-oss](https://github.com/lukilabs/craft-agents-oss/) (`Apache-2.0`)
+- Shadcn-compatible API and composition patterns are aligned with [shadcn-ui/ui](https://github.com/shadcn-ui/ui) (`MIT`)
+- This repository (`@craft/ui`) is licensed under `Apache-2.0`
 
 ## Core Goals
 

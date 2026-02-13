@@ -5,8 +5,6 @@ import {
   Blocks,
   Box,
   Braces,
-  Github,
-  Globe,
   LayoutGrid,
   MessageSquareText,
   Monitor,
@@ -93,7 +91,6 @@ const sectionMeta: Record<Section, SectionMeta> = {
 }
 
 const projectRepoUrl = 'https://github.com/bravohenry/craft-ui'
-const authorGithubUrl = 'https://github.com/bravohenry'
 const authorWebsiteUrl = 'https://z1han.com'
 
 export function App() {
@@ -152,30 +149,16 @@ export function App() {
             </ul>
           </div>
           <div className="mt-3 space-y-2 border-t border-border pt-3">
-            <p className="text-sm font-medium">Zihan Huang</p>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <a
-                href={authorGithubUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Author GitHub"
-                className="rounded-sm p-1 hover:bg-muted"
-              >
-                <Github className="size-4" />
-              </a>
-              <a
-                href={authorWebsiteUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Author Website"
-                className="rounded-sm p-1 hover:bg-muted"
-              >
-                <Globe className="size-4" />
-              </a>
-            </div>
-            <Button size="sm" variant="outline" className="w-full justify-start" asChild>
+            <a
+              href={authorWebsiteUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="block text-xs font-medium text-muted-foreground underline-offset-4 hover:underline"
+            >
+              Zihan Huang
+            </a>
+            <Button size="sm" variant="ghost" className="h-8 w-full justify-start px-2 text-xs font-normal text-muted-foreground hover:text-foreground" asChild>
               <a href={projectRepoUrl} target="_blank" rel="noreferrer">
-                <Github className="size-4" />
                 Open in GitHub
               </a>
             </Button>

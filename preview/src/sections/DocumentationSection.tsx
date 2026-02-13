@@ -7,7 +7,6 @@
 
 import { Bot, BookOpen, Code2, Rocket, Sparkles } from 'lucide-react'
 import {
-  InlineExecution,
   SystemMessage,
   UserMessageBubble,
 } from '@craft/ui/chat'
@@ -192,20 +191,22 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
           </Alert>
 
           <div className="space-y-3 rounded-lg border border-border bg-muted/20 p-3">
-            <p className="text-sm font-semibold">Why This Exists (Human Brief)</p>
+            <p className="text-sm font-semibold">Why This Exists</p>
             <UserMessageBubble
               compactMode
+              className="items-start gap-2"
               content="Why do we need this kit, and where does it come from?"
             />
             <SystemMessage
+              className="px-0 py-0"
               type="system"
-              content="We need one consistent UI surface for React and Electron so teams do not rebuild primitives for every app. This kit merges the composable API style from [shadcn/ui](https://github.com/shadcn-ui/ui) with production interaction patterns extracted from [Craft Agents OSS](https://github.com/lukilabs/craft-agents-oss/)."
+              content="To keep one reliable UI foundation for React and Electron. It combines composable API patterns from [shadcn/ui](https://github.com/shadcn-ui/ui) with production interaction patterns from [Craft Agents OSS](https://github.com/lukilabs/craft-agents-oss/)."
             />
-            <InlineExecution
-              status="success"
-              activities={[]}
-              result="Outcome: faster delivery, lower design drift, and reusable agent-native patterns across chat, code, markdown, tables, and overlays."
-            />
+            <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
+              <li>Faster delivery with fewer one-off components.</li>
+              <li>Consistent behavior across chat, code, markdown, tables, and overlays.</li>
+              <li>Lower design drift between products and teams.</li>
+            </ul>
           </div>
 
           <div className="space-y-3">

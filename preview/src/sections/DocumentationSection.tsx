@@ -1,27 +1,19 @@
 /**
- * [INPUT]: depends on @craft/ui/ui primitives, @craft/ui/chat components, and lucide-react icons.
- * [OUTPUT]: DocumentationSection component with human-first guide and AI-first implementation spec.
- * [POS]: preview homepage delivery document and default entry for sidebar navigation.
+ * [INPUT]: depends on @craft/ui/ui primitives and lucide-react icons.
+ * [OUTPUT]: DocumentationSection component with human-first rationale and AI execution specification.
+ * [POS]: preview homepage documentation entry that explains purpose for humans and implementation for agents.
  * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
  */
 
-import { Bot, BookOpen, Code2, Rocket } from 'lucide-react'
+import { Code2 } from 'lucide-react'
 import {
   SystemMessage,
   UserMessageBubble,
 } from '@craft/ui/chat'
 import {
-  Badge,
   Button,
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
   Kbd,
   ScrollArea,
-  SectionHeader,
   Separator,
   Table,
   TableBody,
@@ -137,175 +129,166 @@ interface DocumentationSectionProps {
 
 export function DocumentationSection({ onNavigate }: DocumentationSectionProps) {
   return (
-    <div className="space-y-8">
-      <SectionHeader
-        title="Agentic/ui Delivery Document"
-        description="Agentic-Native UI Kit"
-        action={<Badge className="gap-1"><BookOpen className="size-3.5" />Docs Home</Badge>}
-      />
+    <div className="space-y-10">
+      <section className="space-y-6">
+        <p className="text-sm font-semibold text-primary">Getting Started</p>
+        <h2 className="text-2xl font-semibold tracking-tight">Why This Kit Exists</h2>
+        <p className="max-w-4xl text-base leading-8 text-muted-foreground">
+          Agentic/ui exists because teams building agent products need more than standard application primitives.
+          It merges the composable API style from
+          {' '}
+          <a
+            href="https://github.com/shadcn-ui/ui"
+            target="_blank"
+            rel="noreferrer"
+            className="underline underline-offset-4"
+          >
+            shadcn/ui
+          </a>
+          {' '}
+          with production interaction patterns from
+          {' '}
+          <a
+            href="https://github.com/lukilabs/craft-agents-oss/"
+            target="_blank"
+            rel="noreferrer"
+            className="underline underline-offset-4"
+          >
+            Craft Agents OSS
+          </a>
+          .
+        </p>
 
-      <Card className="border-foreground/15">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Rocket className="size-4" />
-            For Humans: Start Here
-          </CardTitle>
-          <CardDescription>
-            A short story for why this kit exists and how to ship with it fast.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <p className="text-xs text-muted-foreground">
-            Origin:
+        <div className="max-w-4xl space-y-3 rounded-lg border border-border bg-muted/20 p-4">
+          <p className="text-sm font-semibold text-foreground">Story</p>
+          <UserMessageBubble
+            compactMode
+            className="items-start gap-2"
+            content="We already use shadcn. Why create Agentic/ui?"
+          />
+          <SystemMessage
+            className="px-0 py-0"
+            type="system"
+            content="Shadcn gives strong primitives for application UI, but agent products need additional first-class surfaces: reasoning flow, markdown reports, and generated Mermaid diagrams."
+          />
+          <UserMessageBubble
+            compactMode
+            className="items-start gap-2"
+            content="What does this change for product teams?"
+          />
+          <SystemMessage
+            className="px-0 py-0"
+            type="system"
+            content="One shared component layer for React and Electron, less one-off UI, faster implementation, and lower design drift across teams."
+          />
+        </div>
+
+        <h3 className="pt-2 text-xl font-semibold tracking-tight">What Makes Agentic/ui Different</h3>
+        <div className="max-w-4xl space-y-4 text-base leading-8 text-muted-foreground">
+          <p>
+            <span className="font-semibold text-foreground">Familiar foundation.</span>
             {' '}
-            <a
-              href="https://github.com/lukilabs/craft-agents-oss/"
-              target="_blank"
-              rel="noreferrer"
-              className="underline underline-offset-4"
-            >
-              Craft Agents OSS
-            </a>
-            {' '}
-            with design system patterns aligned to
-            {' '}
-            <a
-              href="https://github.com/shadcn-ui/ui"
-              target="_blank"
-              rel="noreferrer"
-              className="underline underline-offset-4"
-            >
-              shadcn/ui
-            </a>
-            .
+            Engineers can keep the same composable mental model they already use in shadcn-style workflows, so adoption
+            is immediate instead of disruptive. Teams spend less time re-learning component APIs and more time shipping
+            product behavior.
           </p>
+          <p>
+            <span className="font-semibold text-foreground">Agent-native outputs.</span>
+            {' '}
+            Agent products are judged by generated outputs, not just forms and dialogs. Agentic/ui treats
+            thinking-process UI, markdown-first reports, and Mermaid diagrams as first-class surfaces, so teams stop
+            building one-off wrappers around core agent experiences.
+          </p>
+          <p>
+            <span className="font-semibold text-foreground">One cross-platform surface.</span>
+            {' '}
+            A single component layer across React and Electron gives product, design, and engineering one shared contract.
+            The result is faster delivery, fewer duplicated implementations, and lower design drift across web and desktop.
+          </p>
+        </div>
 
-          <div className="space-y-3 rounded-xl border border-primary/25 bg-gradient-to-r from-primary/10 via-info/10 to-accent/10 p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">The Pitch</p>
-            <h3 className="text-base font-semibold leading-tight">
-              Build once for agent products, not ten times for each screen.
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Shadcn gives solid primitives for classic app UI. Agent products need more: thinking-process UI, long-form
-              Markdown, and Mermaid diagrams as first-class outputs. Agentic-Native UI Kit keeps the shadcn API style
-              and adds battle-tested agent workflows from Craft.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <Badge className="border border-primary/30 bg-primary/15 text-primary">Thinking Process UI</Badge>
-              <Badge className="border border-info/30 bg-info/15 text-[var(--info-text)]">Markdown-Native Output</Badge>
-              <Badge className="border border-accent/30 bg-accent/15 text-accent">Mermaid Visualization</Badge>
-            </div>
+        <div className="space-y-3 pt-2">
+          <h3 className="text-xl font-semibold tracking-tight">Section Map</h3>
+          <p className="text-sm text-muted-foreground">Each sidebar section has a concrete implementation scope.</p>
+          <div className="overflow-hidden rounded-lg border border-border">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Section</TableHead>
+                  <TableHead>Purpose</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {sectionMap.map((row) => (
+                  <TableRow key={row.section}>
+                    <TableCell className="font-medium">{row.section}</TableCell>
+                    <TableCell>{row.purpose}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
+        </div>
 
-          <div className="space-y-3 rounded-lg border border-border bg-muted/20 p-3">
-            <p className="text-sm font-semibold">Story in One Exchange</p>
-            <UserMessageBubble
-              compactMode
-              className="items-start gap-2"
-              content="If shadcn already works, why do we need another kit?"
-            />
-            <SystemMessage
-              className="px-0 py-0"
-              type="system"
-              content="Because we are not only building forms and dialogs. We are shipping agent workflows: thinking traces, markdown reports, and Mermaid diagrams. [shadcn/ui](https://github.com/shadcn-ui/ui) is the foundation; [Craft Agents OSS](https://github.com/lukilabs/craft-agents-oss/) contributes the agent-native patterns."
-            />
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-sm font-semibold">Quick setup</h3>
-            <ol className="list-decimal space-y-1 pl-5 text-sm text-muted-foreground">
-              <li>Install and include the style entry.</li>
-              <li>Wrap your app with <Kbd>PlatformProvider</Kbd>.</li>
-              <li>Compose with `@craft/ui/ui` primitives before custom markup.</li>
-            </ol>
-          </div>
-
+        <div className="space-y-3 pt-2">
+          <h3 className="text-xl font-semibold tracking-tight">5-minute Setup</h3>
+          <ol className="list-decimal space-y-1 pl-5 text-sm text-muted-foreground">
+            <li>Install and include the style entry.</li>
+            <li>Wrap your app with <Kbd>PlatformProvider</Kbd>.</li>
+            <li>Compose with <code>@craft/ui/ui</code> primitives before custom markup.</li>
+          </ol>
           <div className="overflow-hidden rounded-lg border border-border bg-muted/30">
             <pre className="overflow-x-auto p-4 text-xs leading-relaxed">
               <code>{quickInstallCode}</code>
             </pre>
           </div>
-        </CardContent>
-        <CardFooter>
-          <Button size="sm" onClick={() => onNavigate?.('Foundations')}>
-            Open Foundations
-          </Button>
-          <Button variant="outline" size="sm" onClick={() => onNavigate?.('Component Gallery')}>
-            Open Component Gallery
-          </Button>
-        </CardFooter>
-      </Card>
-
-      <div className="space-y-4">
-        <div className="space-y-1">
-          <CardTitle>Section Map</CardTitle>
-          <CardDescription>Every section in the sidebar has a concrete scope for review and implementation.</CardDescription>
+          <div className="flex flex-wrap gap-2 pt-1">
+            <Button size="sm" onClick={() => onNavigate?.('Foundations')}>
+              Open Foundations
+            </Button>
+            <Button variant="outline" size="sm" onClick={() => onNavigate?.('Component Gallery')}>
+              Open Component Gallery
+            </Button>
+          </div>
         </div>
-        <Card className="p-0 overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Section</TableHead>
-                <TableHead>Purpose</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {sectionMap.map((row) => (
-                <TableRow key={row.section}>
-                  <TableCell className="font-medium">{row.section}</TableCell>
-                  <TableCell>{row.purpose}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Card>
-      </div>
+      </section>
 
       <Separator />
 
-      <SectionHeader
-        title="AI Integration Zone"
-        description="From this point onward, content is optimized for agent execution."
-        action={<Badge variant="secondary" className="gap-1"><Bot className="size-3.5" />AI-Only</Badge>}
-      />
+      <section className="space-y-4">
+        <div className="space-y-1">
+          <p className="text-sm font-semibold text-primary">For AI</p>
+          <h3 className="text-xl font-semibold tracking-tight">Execution Spec</h3>
+          <p className="text-sm text-muted-foreground">Use these blocks as deterministic implementation context.</p>
+        </div>
 
-      <Tabs defaultValue="shell" className="space-y-3">
-        <TabsList>
-          <TabsTrigger value="shell">App Shell</TabsTrigger>
-          <TabsTrigger value="usage">Component Usage</TabsTrigger>
-          <TabsTrigger value="contract">Execution Contract</TabsTrigger>
-        </TabsList>
+        <Tabs defaultValue="shell" className="space-y-4">
+          <TabsList className="h-auto flex-wrap justify-start gap-1">
+            <TabsTrigger value="shell">App Shell</TabsTrigger>
+            <TabsTrigger value="usage">Component Usage</TabsTrigger>
+            <TabsTrigger value="contract">Execution Contract</TabsTrigger>
+          </TabsList>
 
-        <TabsContent value="shell">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Code2 className="size-4" />
-                Sidebar and First-Item Default State
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-hidden rounded-lg border border-border bg-muted/30">
-                <pre className="overflow-x-auto p-4 text-xs leading-relaxed">
-                  <code>{appShellCode}</code>
-                </pre>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
+          <TabsContent value="shell" className="space-y-3">
+            <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+              <Code2 className="size-4" />
+              Sidebar and First-Item Default State
+            </p>
+            <div className="overflow-hidden rounded-lg border border-border bg-muted/30">
+              <pre className="overflow-x-auto p-4 text-xs leading-relaxed">
+                <code>{appShellCode}</code>
+              </pre>
+            </div>
+          </TabsContent>
 
-        <TabsContent value="usage">
-          <Card>
-            <CardHeader>
-              <CardTitle>Canonical Component Composition</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="overflow-hidden rounded-lg border border-border bg-muted/30">
-                <pre className="overflow-x-auto p-4 text-xs leading-relaxed">
-                  <code>{componentUsageCode}</code>
-                </pre>
-              </div>
-
+          <TabsContent value="usage" className="space-y-4">
+            <p className="text-sm font-medium text-foreground">Canonical Component Composition</p>
+            <div className="overflow-hidden rounded-lg border border-border bg-muted/30">
+              <pre className="overflow-x-auto p-4 text-xs leading-relaxed">
+                <code>{componentUsageCode}</code>
+              </pre>
+            </div>
+            <div className="overflow-hidden rounded-lg border border-border">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -328,26 +311,19 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
                   ))}
                 </TableBody>
               </Table>
-            </CardContent>
-          </Card>
-        </TabsContent>
+            </div>
+          </TabsContent>
 
-        <TabsContent value="contract">
-          <Card>
-            <CardHeader>
-              <CardTitle>Deterministic Build Contract</CardTitle>
-              <CardDescription>Use this block as direct context for coding agents.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ScrollArea className="h-72 rounded-lg border border-border bg-muted/30 p-4">
-                <pre className="text-xs leading-relaxed">
-                  <code>{aiExecutionContract}</code>
-                </pre>
-              </ScrollArea>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+          <TabsContent value="contract" className="space-y-3">
+            <p className="text-sm font-medium text-foreground">Deterministic Build Contract</p>
+            <ScrollArea className="h-72 rounded-lg border border-border bg-muted/30 p-4">
+              <pre className="text-xs leading-relaxed">
+                <code>{aiExecutionContract}</code>
+              </pre>
+            </ScrollArea>
+          </TabsContent>
+        </Tabs>
+      </section>
     </div>
   )
 }

@@ -1,9 +1,23 @@
+/**
+ * [INPUT]: depends on Vite, React plugin, Tailwind plugin, and repository env vars from GitHub Actions.
+ * [OUTPUT]: exports preview build config with alias resolution and dynamic base for GitHub Pages deployment.
+ * [POS]: preview app build boundary; ensures local dev path stays stable while Pages uses repo-scoped base path.
+ * [PROTOCOL]: 变更时更新此头部，然后检查 AGENTS.md
+ */
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
+const repositoryName = process.env.GITHUB_REPOSITORY?.split('/')[1]
+const githubPagesBase =
+  process.env.GITHUB_ACTIONS === 'true' && repositoryName
+    ? `/${repositoryName}/`
+    : '/'
+
 export default defineConfig({
+  base: githubPagesBase,
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {

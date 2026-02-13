@@ -2,6 +2,7 @@
 TypeScript + React + Tailwind v4 + Radix UI + oklch color system
 
 <directory>
+preview/ - Vite-powered documentation and component showcase app that imports source components directly for visual validation.
 src/types/ - Standalone type definitions replacing @craft-agent/core (3 files: message, session, activity)
 src/utils/ - Pure utility functions: cn(), path helpers (2 files)
 src/styles/ - Design system CSS: 6-color oklch, 13-level foreground gradients, shadow system, animations
@@ -18,9 +19,12 @@ src/components/overlay/ - FullscreenOverlayBase, PreviewOverlay, GenericOverlay,
 src/components/terminal/ - ANSI escape code parser, TerminalOutput command+output display component (3 files)
 src/components/cards/ - Card components: ActionCard (1 file)
 src/components/chat/ - Chat turn rendering: TurnCard, SessionViewer, UserMessageBubble, SystemMessage, turn-utils, InlineExecution (10 files)
+.github/workflows/ - GitHub Actions delivery automation, including GitHub Pages deployment for preview site.
 </directory>
 
 <config>
 package.json - @craft/ui package, ESM, peer deps for React/Radix/Tailwind/Shiki
 tsconfig.json - ES2022, bundler resolution, strict, react-jsx, @/* path alias
+preview/vite.config.ts - preview build config with alias mapping and GitHub Pages-aware base path.
+.github/workflows/deploy-pages.yml - CI workflow that builds preview/dist and deploys it to GitHub Pages.
 </config>

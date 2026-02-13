@@ -121,7 +121,7 @@ export function App() {
         <nav className="flex w-72 shrink-0 flex-col border-r border-border bg-muted/20 p-4">
           <p className="mb-1 text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">Documentation</p>
           <h1 className="mb-6 text-lg font-semibold tracking-tight">
-            Agentic-Native UI Kit
+            Agentic/ui
           </h1>
           <div className="min-h-0 flex-1 overflow-y-auto pr-1">
             <ul className="space-y-1.5">

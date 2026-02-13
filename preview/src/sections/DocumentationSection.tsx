@@ -138,7 +138,7 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
   return (
     <div className="space-y-8">
       <SectionHeader
-        title="Craft UI Delivery Document"
+        title="Agentic-Native UI Kit Delivery Document"
         description="Human-first onboarding at the top; AI-first integration contract below."
         action={<Badge className="gap-1"><BookOpen className="size-3.5" />Docs Home</Badge>}
       />
@@ -155,7 +155,7 @@ export function DocumentationSection({ onNavigate }: DocumentationSectionProps) 
         </CardHeader>
         <CardContent className="space-y-5">
           <p className="text-xs text-muted-foreground">
-            UI 搭建来源：
+            UI build source:
             {' '}
             <a
               href="https://github.com/lukilabs/craft-agents-oss/"

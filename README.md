@@ -1,4 +1,6 @@
-# @craft/ui
+# Agentic-Native UI Kit
+
+Package: `@craft/ui`
 
 Cross-platform React UI component library for developer tooling interfaces.
 
